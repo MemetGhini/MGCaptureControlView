@@ -1,0 +1,16 @@
+PODS:
+  - MGCaptureControlView (0.1.0)
+
+DEPENDENCIES:
+  - MGCaptureControlView (from `../`)
+
+EXTERNAL SOURCES:
+  MGCaptureControlView:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MGCaptureControlView: bb4886579525f60ceca67504ae94dd74e3231c7a
+
+PODFILE CHECKSUM: 79816f344de61340945b8de101f966941bde4328
+
+COCOAPODS: 1.5.3

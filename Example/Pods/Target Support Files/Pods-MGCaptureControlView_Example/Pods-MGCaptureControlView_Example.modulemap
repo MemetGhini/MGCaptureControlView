@@ -1,0 +1,6 @@
+framework module Pods_MGCaptureControlView_Example {
+  umbrella header "Pods-MGCaptureControlView_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

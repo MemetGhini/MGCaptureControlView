@@ -1,0 +1,747 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2CA0DA0FA792888D5D7780D813E90213 /* Pods-MGCaptureControlView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A1AB527FD51EC0B70D000D41E1B7FF /* Pods-MGCaptureControlView_Tests-dummy.m */; };
+		36AD5C792F6055D86FE0BEDF5BA43291 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		381E082AAA588E3028311AD38F2C153A /* MGCaptureControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EECA82D03FEA39404B5D69493D783E8 /* MGCaptureControlView.m */; };
+		3FFB2E642EBDD7327A9D80F79CB01EBB /* MGCaptureControlView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 37A252A4035B478E841877D9DFC19F5C /* MGCaptureControlView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42186EFCCDF2BDCC89FAE7C41371FF77 /* MGCaptureControlView.h in Headers */ = {isa = PBXBuildFile; fileRef = AF0A0168C1B7213C52EFE59383294DC6 /* MGCaptureControlView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5BA397828A6CA16ABBD93ED1E3865435 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+		69376E190B530BE44335C3E71CDDE8DD /* Pods-MGCaptureControlView_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CF029DE16357D2EC6C5413C1F32838D /* Pods-MGCaptureControlView_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81D572D5FE45A3BFDCFC88C546F607AF /* MGCaptureControlView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B298F315E13DC51D48DEE1A5778B9E /* MGCaptureControlView-dummy.m */; };
+		C6BE073EA5202729D209328F6E4557DF /* Pods-MGCaptureControlView_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04337C77E184FC88ACE94E96CE6FE879 /* Pods-MGCaptureControlView_Example-dummy.m */; };
+		C729A7A6160051D6F4A0E09B89858756 /* Pods-MGCaptureControlView_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C6193EFBA20C12CB50D6B84FB2658A2 /* Pods-MGCaptureControlView_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4AFC744BDF9644391CA1A8E28A2CCCD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0BA63A5BD35F11883B62C526FB4C5020 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 79C06302758B7B485ABE7A6D870D7E4F;
+			remoteInfo = MGCaptureControlView;
+		};
+		446442FD92A5C162555F77933789D804 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 529B534DADD9103D4D979B7776812D0C;
+			remoteInfo = "Pods-MGCaptureControlView_Example";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0208F57190E8E5FDF37AD1BE039B7AFC /* MGCaptureControlView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGCaptureControlView.xcconfig; sourceTree = "<group>"; };
+		04337C77E184FC88ACE94E96CE6FE879 /* Pods-MGCaptureControlView_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MGCaptureControlView_Example-dummy.m"; sourceTree = "<group>"; };
+		0C6193EFBA20C12CB50D6B84FB2658A2 /* Pods-MGCaptureControlView_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MGCaptureControlView_Example-umbrella.h"; sourceTree = "<group>"; };
+		1474AF0148E632665336D91DFF7A4F9C /* Pods-MGCaptureControlView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MGCaptureControlView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		1481E870BCD8FF8535FCAFA8A5AC863C /* MGCaptureControlView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = MGCaptureControlView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		15E718D5398752E134A4F6EEC4033A9D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27DDD09DC644BC6DB627284B24170049 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CF029DE16357D2EC6C5413C1F32838D /* Pods-MGCaptureControlView_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MGCaptureControlView_Tests-umbrella.h"; sourceTree = "<group>"; };
+		37A252A4035B478E841877D9DFC19F5C /* MGCaptureControlView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGCaptureControlView-umbrella.h"; sourceTree = "<group>"; };
+		4E978BCCDA271D17ECA301929565F5BE /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		50A1AB527FD51EC0B70D000D41E1B7FF /* Pods-MGCaptureControlView_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-MGCaptureControlView_Tests-dummy.m"; sourceTree = "<group>"; };
+		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5A9968853329978F939ECCBD4D77AACF /* Pods-MGCaptureControlView_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MGCaptureControlView_Tests.modulemap"; sourceTree = "<group>"; };
+		5D34734337BEF8C94B575F00DE906B5A /* Pods-MGCaptureControlView_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MGCaptureControlView_Example-resources.sh"; sourceTree = "<group>"; };
+		5E679EA44A9DFB09A7BAB90C4FF72C7D /* Pods-MGCaptureControlView_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MGCaptureControlView_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		6BFEA74C3A98846F0AE8363722CD9007 /* MGCaptureControlView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MGCaptureControlView.modulemap; sourceTree = "<group>"; };
+		6EECA82D03FEA39404B5D69493D783E8 /* MGCaptureControlView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MGCaptureControlView.m; path = MGCaptureControlView/Classes/MGCaptureControlView.m; sourceTree = "<group>"; };
+		6F312ECA2B51DAC04CE1054737F1B13A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80B298F315E13DC51D48DEE1A5778B9E /* MGCaptureControlView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MGCaptureControlView-dummy.m"; sourceTree = "<group>"; };
+		8A7172EE06DAFDCA71F6EB36FCF18A5B /* Pods-MGCaptureControlView_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-MGCaptureControlView_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93CD8B91CE5BED1DE64EF2238A4CE8E4 /* Pods-MGCaptureControlView_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MGCaptureControlView_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		942D6E981CC273FB9DC108EFF1493873 /* Pods_MGCaptureControlView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MGCaptureControlView_Example.framework; path = "Pods-MGCaptureControlView_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11E41ADD2B155A2AADC46984F5E659E /* Pods_MGCaptureControlView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_MGCaptureControlView_Tests.framework; path = "Pods-MGCaptureControlView_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0A0168C1B7213C52EFE59383294DC6 /* MGCaptureControlView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MGCaptureControlView.h; path = MGCaptureControlView/Classes/MGCaptureControlView.h; sourceTree = "<group>"; };
+		B22FF3C1B63F5881B847099B9A35C91A /* Pods-MGCaptureControlView_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MGCaptureControlView_Example-frameworks.sh"; sourceTree = "<group>"; };
+		B340C8C4BCBB7D940A9391868E2A8062 /* Pods-MGCaptureControlView_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-MGCaptureControlView_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BDB40AEB537B60D5311B17856F3814FF /* MGCaptureControlView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGCaptureControlView-prefix.pch"; sourceTree = "<group>"; };
+		C2F51146B01F8F71784E6640D330D765 /* Pods-MGCaptureControlView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MGCaptureControlView_Example.modulemap"; sourceTree = "<group>"; };
+		C728EC186E1BE60BBE71BBEDB3521653 /* Pods-MGCaptureControlView_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MGCaptureControlView_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		CF38579686B49409BB305A2BC52E9592 /* MGCaptureControlView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = MGCaptureControlView.framework; path = MGCaptureControlView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D19B154C38395D676D338B98F22F8B70 /* Pods-MGCaptureControlView_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MGCaptureControlView_Tests-frameworks.sh"; sourceTree = "<group>"; };
+		DC1FAF3C4AA7BC7DA8AA10A93F20E266 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		DF5835C7C64C2FB75789CF1BAD1FE838 /* Pods-MGCaptureControlView_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MGCaptureControlView_Example.release.xcconfig"; sourceTree = "<group>"; };
+		ECDE3882250800810817A7FA2F9B2BE5 /* Pods-MGCaptureControlView_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MGCaptureControlView_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		F36C3301D14A32D8116E8F922C8A89B3 /* Pods-MGCaptureControlView_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MGCaptureControlView_Tests-resources.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D4B946541472EDA1463A12FB387B200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36AD5C792F6055D86FE0BEDF5BA43291 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		27D9D6D890490C019E5B933E1EA7B85B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4AFC744BDF9644391CA1A8E28A2CCCD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7F1C55D438D5122DA595F88591D27E02 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5BA397828A6CA16ABBD93ED1E3865435 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C09B542782C1D57908C13F7605236C9 /* MGCaptureControlView */ = {
+			isa = PBXGroup;
+			children = (
+				AF0A0168C1B7213C52EFE59383294DC6 /* MGCaptureControlView.h */,
+				6EECA82D03FEA39404B5D69493D783E8 /* MGCaptureControlView.m */,
+				F42EFABB952B604FCE813B03F49E7796 /* Pod */,
+				AB0B3AD1F2AA27625B20AB7950A1FD37 /* Support Files */,
+			);
+			name = MGCaptureControlView;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		491183FC6A7D283BBA169AA1B7631C86 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DC233DBEC161A9DDBC6EAF0A6E874927 /* Pods-MGCaptureControlView_Example */,
+				9B7BD98AC8DA74EDFD4494CCB242D973 /* Pods-MGCaptureControlView_Tests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		5601E6782BC6C979DE7725F2F3BE91E2 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2C09B542782C1D57908C13F7605236C9 /* MGCaptureControlView */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5E0D919E635D23B70123790B8308F8EF /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				5601E6782BC6C979DE7725F2F3BE91E2 /* Development Pods */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				FEB6E8A736C1C6144D2D36011EE3DA67 /* Products */,
+				491183FC6A7D283BBA169AA1B7631C86 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		9B7BD98AC8DA74EDFD4494CCB242D973 /* Pods-MGCaptureControlView_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				15E718D5398752E134A4F6EEC4033A9D /* Info.plist */,
+				5A9968853329978F939ECCBD4D77AACF /* Pods-MGCaptureControlView_Tests.modulemap */,
+				B340C8C4BCBB7D940A9391868E2A8062 /* Pods-MGCaptureControlView_Tests-acknowledgements.markdown */,
+				8A7172EE06DAFDCA71F6EB36FCF18A5B /* Pods-MGCaptureControlView_Tests-acknowledgements.plist */,
+				50A1AB527FD51EC0B70D000D41E1B7FF /* Pods-MGCaptureControlView_Tests-dummy.m */,
+				D19B154C38395D676D338B98F22F8B70 /* Pods-MGCaptureControlView_Tests-frameworks.sh */,
+				F36C3301D14A32D8116E8F922C8A89B3 /* Pods-MGCaptureControlView_Tests-resources.sh */,
+				2CF029DE16357D2EC6C5413C1F32838D /* Pods-MGCaptureControlView_Tests-umbrella.h */,
+				5E679EA44A9DFB09A7BAB90C4FF72C7D /* Pods-MGCaptureControlView_Tests.debug.xcconfig */,
+				ECDE3882250800810817A7FA2F9B2BE5 /* Pods-MGCaptureControlView_Tests.release.xcconfig */,
+			);
+			name = "Pods-MGCaptureControlView_Tests";
+			path = "Target Support Files/Pods-MGCaptureControlView_Tests";
+			sourceTree = "<group>";
+		};
+		AB0B3AD1F2AA27625B20AB7950A1FD37 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				27DDD09DC644BC6DB627284B24170049 /* Info.plist */,
+				6BFEA74C3A98846F0AE8363722CD9007 /* MGCaptureControlView.modulemap */,
+				0208F57190E8E5FDF37AD1BE039B7AFC /* MGCaptureControlView.xcconfig */,
+				80B298F315E13DC51D48DEE1A5778B9E /* MGCaptureControlView-dummy.m */,
+				BDB40AEB537B60D5311B17856F3814FF /* MGCaptureControlView-prefix.pch */,
+				37A252A4035B478E841877D9DFC19F5C /* MGCaptureControlView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/MGCaptureControlView";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E0D919E635D23B70123790B8308F8EF /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC233DBEC161A9DDBC6EAF0A6E874927 /* Pods-MGCaptureControlView_Example */ = {
+			isa = PBXGroup;
+			children = (
+				6F312ECA2B51DAC04CE1054737F1B13A /* Info.plist */,
+				C2F51146B01F8F71784E6640D330D765 /* Pods-MGCaptureControlView_Example.modulemap */,
+				93CD8B91CE5BED1DE64EF2238A4CE8E4 /* Pods-MGCaptureControlView_Example-acknowledgements.markdown */,
+				1474AF0148E632665336D91DFF7A4F9C /* Pods-MGCaptureControlView_Example-acknowledgements.plist */,
+				04337C77E184FC88ACE94E96CE6FE879 /* Pods-MGCaptureControlView_Example-dummy.m */,
+				B22FF3C1B63F5881B847099B9A35C91A /* Pods-MGCaptureControlView_Example-frameworks.sh */,
+				5D34734337BEF8C94B575F00DE906B5A /* Pods-MGCaptureControlView_Example-resources.sh */,
+				0C6193EFBA20C12CB50D6B84FB2658A2 /* Pods-MGCaptureControlView_Example-umbrella.h */,
+				C728EC186E1BE60BBE71BBEDB3521653 /* Pods-MGCaptureControlView_Example.debug.xcconfig */,
+				DF5835C7C64C2FB75789CF1BAD1FE838 /* Pods-MGCaptureControlView_Example.release.xcconfig */,
+			);
+			name = "Pods-MGCaptureControlView_Example";
+			path = "Target Support Files/Pods-MGCaptureControlView_Example";
+			sourceTree = "<group>";
+		};
+		F42EFABB952B604FCE813B03F49E7796 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				DC1FAF3C4AA7BC7DA8AA10A93F20E266 /* LICENSE */,
+				1481E870BCD8FF8535FCAFA8A5AC863C /* MGCaptureControlView.podspec */,
+				4E978BCCDA271D17ECA301929565F5BE /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		FEB6E8A736C1C6144D2D36011EE3DA67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CF38579686B49409BB305A2BC52E9592 /* MGCaptureControlView.framework */,
+				942D6E981CC273FB9DC108EFF1493873 /* Pods_MGCaptureControlView_Example.framework */,
+				A11E41ADD2B155A2AADC46984F5E659E /* Pods_MGCaptureControlView_Tests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		25036B6A54FDCBE5FDC2872876C80B7C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C729A7A6160051D6F4A0E09B89858756 /* Pods-MGCaptureControlView_Example-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8A69AB928D4FCB0A887C1819502F1E7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69376E190B530BE44335C3E71CDDE8DD /* Pods-MGCaptureControlView_Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D35386D687956565020F308F5DF1F46B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFB2E642EBDD7327A9D80F79CB01EBB /* MGCaptureControlView-umbrella.h in Headers */,
+				42186EFCCDF2BDCC89FAE7C41371FF77 /* MGCaptureControlView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		529B534DADD9103D4D979B7776812D0C /* Pods-MGCaptureControlView_Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 725D627F2E4F27EFBEDC94A040E4B5EB /* Build configuration list for PBXNativeTarget "Pods-MGCaptureControlView_Example" */;
+			buildPhases = (
+				7A081C31DE92BFB1B5C2174CDE52D62A /* Sources */,
+				27D9D6D890490C019E5B933E1EA7B85B /* Frameworks */,
+				25036B6A54FDCBE5FDC2872876C80B7C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DE75364CEE28907D0CEE8B5883CD35DC /* PBXTargetDependency */,
+			);
+			name = "Pods-MGCaptureControlView_Example";
+			productName = "Pods-MGCaptureControlView_Example";
+			productReference = 942D6E981CC273FB9DC108EFF1493873 /* Pods_MGCaptureControlView_Example.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		79C06302758B7B485ABE7A6D870D7E4F /* MGCaptureControlView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7F101B724ED16E42FE47A0C02589BAEB /* Build configuration list for PBXNativeTarget "MGCaptureControlView" */;
+			buildPhases = (
+				A05FD9E1F6263FA9C3455E674997F0DB /* Sources */,
+				1D4B946541472EDA1463A12FB387B200 /* Frameworks */,
+				D35386D687956565020F308F5DF1F46B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MGCaptureControlView;
+			productName = MGCaptureControlView;
+			productReference = CF38579686B49409BB305A2BC52E9592 /* MGCaptureControlView.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E3D41A97DB676A3E79DFC6AD8382E2C3 /* Pods-MGCaptureControlView_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A04E0B773B3CCA3C431138BCF79E43F8 /* Build configuration list for PBXNativeTarget "Pods-MGCaptureControlView_Tests" */;
+			buildPhases = (
+				C5CE8A3257C84ACF0DC600E0A4E3E2EA /* Sources */,
+				7F1C55D438D5122DA595F88591D27E02 /* Frameworks */,
+				A8A69AB928D4FCB0A887C1819502F1E7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				361DE15D9A87DEDEE36C422AD6954D21 /* PBXTargetDependency */,
+			);
+			name = "Pods-MGCaptureControlView_Tests";
+			productName = "Pods-MGCaptureControlView_Tests";
+			productReference = A11E41ADD2B155A2AADC46984F5E659E /* Pods_MGCaptureControlView_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = FEB6E8A736C1C6144D2D36011EE3DA67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79C06302758B7B485ABE7A6D870D7E4F /* MGCaptureControlView */,
+				529B534DADD9103D4D979B7776812D0C /* Pods-MGCaptureControlView_Example */,
+				E3D41A97DB676A3E79DFC6AD8382E2C3 /* Pods-MGCaptureControlView_Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7A081C31DE92BFB1B5C2174CDE52D62A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6BE073EA5202729D209328F6E4557DF /* Pods-MGCaptureControlView_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A05FD9E1F6263FA9C3455E674997F0DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81D572D5FE45A3BFDCFC88C546F607AF /* MGCaptureControlView-dummy.m in Sources */,
+				381E082AAA588E3028311AD38F2C153A /* MGCaptureControlView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5CE8A3257C84ACF0DC600E0A4E3E2EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA0DA0FA792888D5D7780D813E90213 /* Pods-MGCaptureControlView_Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		361DE15D9A87DEDEE36C422AD6954D21 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-MGCaptureControlView_Example";
+			target = 529B534DADD9103D4D979B7776812D0C /* Pods-MGCaptureControlView_Example */;
+			targetProxy = 446442FD92A5C162555F77933789D804 /* PBXContainerItemProxy */;
+		};
+		DE75364CEE28907D0CEE8B5883CD35DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MGCaptureControlView;
+			target = 79C06302758B7B485ABE7A6D870D7E4F /* MGCaptureControlView */;
+			targetProxy = 0BA63A5BD35F11883B62C526FB4C5020 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		11DADA0D066A847CAB802EBDAD911D3F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0208F57190E8E5FDF37AD1BE039B7AFC /* MGCaptureControlView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MGCaptureControlView/MGCaptureControlView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGCaptureControlView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MGCaptureControlView/MGCaptureControlView.modulemap";
+				PRODUCT_MODULE_NAME = MGCaptureControlView;
+				PRODUCT_NAME = MGCaptureControlView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		150D29F759EDC6A6906E42D3816714E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0208F57190E8E5FDF37AD1BE039B7AFC /* MGCaptureControlView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/MGCaptureControlView/MGCaptureControlView-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/MGCaptureControlView/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/MGCaptureControlView/MGCaptureControlView.modulemap";
+				PRODUCT_MODULE_NAME = MGCaptureControlView;
+				PRODUCT_NAME = MGCaptureControlView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		204C8D56E11451AD284379D2FE1CAC79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF5835C7C64C2FB75789CF1BAD1FE838 /* Pods-MGCaptureControlView_Example.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MGCaptureControlView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MGCaptureControlView_Example/Pods-MGCaptureControlView_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		44949E07FBA8872B00BC16D23870E6A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C728EC186E1BE60BBE71BBEDB3521653 /* Pods-MGCaptureControlView_Example.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MGCaptureControlView_Example/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MGCaptureControlView_Example/Pods-MGCaptureControlView_Example.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6450EFD33CC59288D9530CF274FC36FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECDE3882250800810817A7FA2F9B2BE5 /* Pods-MGCaptureControlView_Tests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MGCaptureControlView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MGCaptureControlView_Tests/Pods-MGCaptureControlView_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		B42B54097A876E8A982CBF5DAA91B1AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		D2A90C0C98D24B93496C140E2A331EC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E679EA44A9DFB09A7BAB90C4FF72C7D /* Pods-MGCaptureControlView_Tests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-MGCaptureControlView_Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-MGCaptureControlView_Tests/Pods-MGCaptureControlView_Tests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B33C5230DE4A9DFA6D8F46505DD7AF7 /* Debug */,
+				B42B54097A876E8A982CBF5DAA91B1AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		725D627F2E4F27EFBEDC94A040E4B5EB /* Build configuration list for PBXNativeTarget "Pods-MGCaptureControlView_Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				44949E07FBA8872B00BC16D23870E6A7 /* Debug */,
+				204C8D56E11451AD284379D2FE1CAC79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7F101B724ED16E42FE47A0C02589BAEB /* Build configuration list for PBXNativeTarget "MGCaptureControlView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				150D29F759EDC6A6906E42D3816714E8 /* Debug */,
+				11DADA0D066A847CAB802EBDAD911D3F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A04E0B773B3CCA3C431138BCF79E43F8 /* Build configuration list for PBXNativeTarget "Pods-MGCaptureControlView_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2A90C0C98D24B93496C140E2A331EC3 /* Debug */,
+				6450EFD33CC59288D9530CF274FC36FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

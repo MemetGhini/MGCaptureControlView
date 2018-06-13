@@ -1,0 +1,6 @@
+framework module MGCaptureControlView {
+  umbrella header "MGCaptureControlView-umbrella.h"
+
+  export *
+  module * { export * }
+}
