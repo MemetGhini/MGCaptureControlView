@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MGCaptureControlView_Example' do
+  pod 'MGCaptureControlView', :path => '../'
+
+  target 'MGCaptureControlView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
