@@ -60,7 +60,16 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commenInit];
+    }
+    return self;
+}
+
 - (void)commenInit {
+    self.backgroundColor = [UIColor clearColor];
     [self setDefaultValue];
     [self createUI];
     [self prepareShapeLayer];
