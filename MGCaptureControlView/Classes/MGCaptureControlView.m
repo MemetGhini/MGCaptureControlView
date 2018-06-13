@@ -232,9 +232,8 @@
 }
 
 -(void)calculatePressedTime{
-    //记录点击时长
     pressedTime += MG_PROGRESS_UPDATE_TIME;
-    //画圈圈
+    //Draw progress circel
     if (pressedTime>MG_BUTTON_ANIMATION) {
         if (!isRunning) {
             isRunning = YES;

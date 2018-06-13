@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/memetghini@qq.com/MGCaptureControlView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'memetghini@qq.com' => 'memetghini@qq.com' }
+  s.author           = { 'memetghini' => 'memetghini@qq.com' }
   s.source           = { :git => 'https://github.com/memetghini@qq.com/MGCaptureControlView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
