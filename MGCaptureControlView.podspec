@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGCaptureControlView'
-  s.version          = '0.1.1'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of MGCaptureControlView.'
 
 # This description is used to generate tags and improve search results.
