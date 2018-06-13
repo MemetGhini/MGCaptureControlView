@@ -33,13 +33,12 @@
 }
 @property (nonatomic,strong) UIView *outsideView;
 @property (nonatomic,strong) UIButton *insideView;
-@property (nonatomic, assign) MGProgressPosition progressPosition;
 
 @end
 
 @implementation MGCaptureControlView
 
-- (instancetype)initWithFrame:(CGRect)frame progressPosition:(MGProgressPosition)progressPosition inOutRatio:(CGFloat)inOutRatio {
+- (instancetype)initWithFrame:(CGRect)frame inOutRatio:(CGFloat)inOutRatio {
     self = [self initWithFrame:frame];
     if (self) {
         if (inOutRatio>1) {
@@ -49,15 +48,6 @@
         } else {
             _insideOutsideRatio = inOutRatio;
         }
-        _progressPosition = progressPosition;
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame progressPosition:(MGProgressPosition)progressPosition {
-    self = [self initWithFrame:frame];
-    if (self) {
-        self.progressPosition = progressPosition;
     }
     return self;
 }
@@ -78,7 +68,10 @@
 
 - (void)setDefaultValue {
     self.insideOutsideRatio = MG_IN_OUT_RATIO;
+    self.progressPosition = MGProgressPositionMiddle;
     self.outColor = [UIColor colorWithWhite:1.0 alpha:0.4];
+    self.outBorderColor = [UIColor clearColor];
+    self.outBorderWidth = MG_IN_BORDER_WIDTH;
     self.inBorderWidth = MG_IN_BORDER_WIDTH;
     self.inBorderColor = [UIColor clearColor];
     self.inColor = [UIColor whiteColor];
@@ -93,6 +86,8 @@
     _outsideView = [[UIView alloc] initWithFrame:self.bounds];
     _outsideView.layer.cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height)/2.0;
     _outsideView.backgroundColor = _outColor;
+    _outsideView.layer.borderWidth = _outBorderWidth;
+    _outsideView.layer.borderColor = _outBorderColor.CGColor;
     [self addSubview:_outsideView];
     //inside view
     CGFloat insideWidth = CGRectGetWidth(_outsideView.frame)*_insideOutsideRatio;
@@ -120,7 +115,7 @@
     _progressLayer.fillColor = [UIColor clearColor].CGColor;
     _progressLayer.lineCap = kCALineCapRound;
     _progressLayer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 0.0, 0.0);
-    _progressLayer.lineWidth = _progressWidth;
+    _progressLayer.lineWidth = _progressWidth*_outMaxScale;
     _progressLayer.strokeColor = self.progressColor.CGColor;
     _progressLayer.strokeStart = 0;
     _progressLayer.strokeEnd = 0;
@@ -138,6 +133,11 @@
     self.outsideView.backgroundColor = _outColor;
 }
 
+- (void)setInColor:(UIColor *)inColor {
+    _inColor = inColor;
+    self.insideView.backgroundColor = _inColor;
+}
+
 - (void)setProgressColor:(UIColor *)progressColor {
     _progressColor = progressColor;
     if (_progressLayer) {
@@ -147,16 +147,22 @@
 
 - (void)setInBorderWidth:(CGFloat)inBorderWidth {
     _inBorderWidth = inBorderWidth;
-    if (_progressLayer) {
-        _insideView.layer.borderWidth = _inBorderWidth;
-    }
+    _insideView.layer.borderWidth = _inBorderWidth;
 }
 
 - (void)setInBorderColor:(UIColor *)inBorderColor {
     _inBorderColor = inBorderColor;
-    if (_progressLayer) {
-        _insideView.layer.borderColor = _inBorderColor.CGColor;
-    }
+    _insideView.layer.borderColor = _inBorderColor.CGColor;
+}
+
+- (void)setOutBorderColor:(UIColor *)outBorderColor {
+    _outBorderColor = outBorderColor;
+    _outsideView.layer.borderColor = _outBorderColor.CGColor;
+}
+
+- (void)setOutBorderWidth:(CGFloat)outBorderWidth {
+    _outBorderWidth = outBorderWidth;
+    _outsideView.layer.borderWidth = _outBorderWidth;
 }
 
 - (void)setOutMaxScale:(CGFloat)outMaxScale {
@@ -182,6 +188,28 @@
         _progressLayer.lineWidth = _progressWidth;
     }
 }
+
+- (void)setProgressPosition:(MGProgressPosition)progressPosition {
+    _progressPosition = progressPosition;
+    CGFloat shapeLayerWidth = CGRectGetWidth(self.frame)*_outMaxScale;
+    CGFloat shapeLayerHeight = CGRectGetHeight(self.frame)*_outMaxScale;
+    if (_progressPosition == MGProgressPositionOut) {
+        shapeLayerWidth += _progressWidth*_outMaxScale;
+        shapeLayerHeight += _progressWidth*_outMaxScale;
+    }else if (_progressPosition == MGProgressPositionIn) {
+        shapeLayerWidth -= _progressWidth*_outMaxScale;
+        shapeLayerHeight -= _progressWidth*_outMaxScale;
+    }
+    _progressLayer.frame = CGRectMake(0, 0, shapeLayerWidth, shapeLayerHeight);
+    _progressLayer.position = _insideView.center;
+    //Create BezierPath
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:_progressLayer.bounds cornerRadius:MIN(shapeLayerWidth, shapeLayerHeight)/2];
+    circlePath.lineCapStyle = kCGLineCapRound;
+    //CAShapeLayer Path
+    _progressLayer.path = circlePath.CGPath;
+}
+
+#pragma mark - Others
 
 -(void)longPressGestureRecognizer:(UILongPressGestureRecognizer*)gesture{
     @WeakObj(self)

@@ -68,6 +68,10 @@ IB_DESIGNABLE
  Outside view and outside view default size ratio.
  */
 @property (nonatomic, assign)IBInspectable CGFloat insideOutsideRatio;
+/**
+ Progress circle position.
+ */
+@property (nonatomic, assign) MGProgressPosition progressPosition;
 
 @property (nonatomic,weak) id<MGCaptureControlViewDelegate> delegate;
 
@@ -78,18 +82,10 @@ IB_DESIGNABLE
 - (instancetype)initWithFrame:(CGRect)frame;
 
 /**
- Instantiation method with custom progress circel positon.
- @param frame view frame .
- @param progressPosition progress position support with MGProgressPosition enum.
- */
-- (instancetype)initWithFrame:(CGRect)frame progressPosition:(MGProgressPosition)progressPosition;
-
-/**
  Instantiation method with custom progress circel positon and inside outside view size ratio.
  @param frame view frame .
- @param progressPosition progress position support with MGProgressPosition enum.
  @param inOutRatio inside outside view size ratio.
  */
-- (instancetype)initWithFrame:(CGRect)frame progressPosition:(MGProgressPosition)progressPosition inOutRatio:(CGFloat)inOutRatio;
+- (instancetype)initWithFrame:(CGRect)frame inOutRatio:(CGFloat)inOutRatio;
 
 @end
