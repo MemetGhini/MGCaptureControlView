@@ -1,16 +1,16 @@
 //
 //  MGCaptureControlView.m
-//  buttonTest
+//  MGCaptureControlView
 //
-//  Created by Memet on 2018/6/12.
-//  Copyright © 2018 Memet. All rights reserved.
+//  Created by MemetGhini on 2018/6/12.
+//  Copyright © 2018 MemetGhini. All rights reserved.
 //
 
 #import "MGCaptureControlView.h"
 
 #define MG_IN_OUT_RATIO 3.0/4.0
 #define MG_IN_BORDER_WIDTH 2.0
-#define MG_MAX_CAPTURE_TIME 10.0
+#define MG_MAX_CAPTURE_TIME 6.0
 #define MG_MINIMUM_PRESS_DURATION 0.15
 #define MG_OUTSIDE_VIEW_MAX_SCALE 3.0/2.0
 #define MG_INSIDE_VIEW_MIN_SCALE 3.0/4.0
@@ -24,12 +24,12 @@
 
 @interface MGCaptureControlView()
 {
+    BOOL _isRunning;
     CAShapeLayer *_shapeLayer;
-    BOOL isRunning;
-    //拍摄相关
-    CGFloat pressedTime;
-    NSTimer *pressTimer;
-    CGFloat _inOutRatio;
+    NSTimer *_pressTimer;
+    NSTimer *_endTimer;
+    CGFloat _pressedTime;
+    UILongPressGestureRecognizer *_pressGesture;
 }
 @property (nonatomic,strong) UIView *outsideView;
 @property (nonatomic,strong) UIButton *insideView;
@@ -43,11 +43,11 @@
     self = [self initWithFrame:frame];
     if (self) {
         if (inOutRatio>1) {
-            _inOutRatio = 1.0;
+            _insideOutsideRatio = 1.0;
         } else if (inOutRatio<0) {
-            _inOutRatio = 0.0;
+            _insideOutsideRatio = 0.0;
         } else {
-            _inOutRatio = inOutRatio;
+            _insideOutsideRatio = inOutRatio;
         }
         _progressPosition = progressPosition;
     }
@@ -105,9 +105,9 @@
     [_insideView addTarget:self action:@selector(insideButtonDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_insideView];
     //pressGesture for capturing
-    UILongPressGestureRecognizer *pressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizer:)];
-    pressGesture.minimumPressDuration = MG_MINIMUM_PRESS_DURATION;
-    [_insideView addGestureRecognizer:pressGesture];
+    _pressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizer:)];
+    _pressGesture.minimumPressDuration = MG_MINIMUM_PRESS_DURATION;
+    [_insideView addGestureRecognizer:_pressGesture];
 }
 
 -(void)prepareShapeLayer{
@@ -125,15 +125,7 @@
     _shapeLayer.strokeStart = 0;
     _shapeLayer.strokeEnd = 0;
     //Create BezierPath
-    //减掉顶部两个角
-//    UIBezierPath *circlePath = [UIBezierPath
-//                              bezierPathWithRoundedRect:_shapeLayer.bounds
-//                              byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight)
-//                              cornerRadii:CGSizeMake(shapeLayerWidth/2, shapeLayerHeight/2)
-//                              ];
     UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:_shapeLayer.bounds cornerRadius:shapeLayerWidth/2];
-    //+ (instancetype)bezierPathWithRoundedRect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius; // rounds all corners with the same horizontal and vertical radius
-    //UIBezierPath *circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, _shapeLayer.frame.size.width, _shapeLayer.frame.size.height)];
     circlePath.lineCapStyle = kCGLineCapRound;
     //CAShapeLayer Path
     _shapeLayer.path = circlePath.CGPath;
@@ -188,31 +180,17 @@
         [self.layer addSublayer:_shapeLayer];
     }
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
-            [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateBegin];
-        }
-        //开始放大
         [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
             selfWeak.outsideView.transform = CGAffineTransformScale(selfWeak.outsideView.transform, selfWeak.outMaxScale, selfWeak.outMaxScale);
             selfWeak.insideView.transform = CGAffineTransformScale(selfWeak.insideView.transform, selfWeak.inMinScale, selfWeak.inMinScale);
         }];
-        pressTimer = [NSTimer scheduledTimerWithTimeInterval:MG_PROGRESS_UPDATE_TIME target:self selector:@selector(calculatePressedTime) userInfo:nil repeats:YES];
+        _pressTimer = [NSTimer scheduledTimerWithTimeInterval:MG_PROGRESS_UPDATE_TIME target:self selector:@selector(calculatePressedTime) userInfo:nil repeats:YES];
+        _endTimer = [NSTimer scheduledTimerWithTimeInterval:MG_BUTTON_ANIMATION+MG_MAX_CAPTURE_TIME target:self selector:@selector(captureShouldEnd) userInfo:nil repeats:YES];
     }else if (gesture.state == UIGestureRecognizerStateEnded){
-        //结束动画
-        if (isRunning) {
-            [_shapeLayer removeFromSuperlayer];
-            _shapeLayer.strokeStart = 0;
-            _shapeLayer.strokeEnd = 0;
-        }
-        isRunning = NO;
-        
-        [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
-            selfWeak.outsideView.transform = CGAffineTransformScale(selfWeak.outsideView.transform, 1.0/selfWeak.outMaxScale, 1.0/selfWeak.outMaxScale);
-            selfWeak.insideView.transform = CGAffineTransformScale(selfWeak.insideView.transform, 1.0/selfWeak.inMinScale, 1.0/selfWeak.inMinScale);
-        }];
-        //判断结束原因
-        if (pressedTime<=MG_BUTTON_ANIMATION+MG_MINIMUM_CAPTURE_TIME) {
-            isRunning = NO;
+        [self resetToDefaultState];
+        //If it is too short, click Cancel
+        if (_pressedTime<=MG_BUTTON_ANIMATION+MG_MINIMUM_CAPTURE_TIME) {
+            _isRunning = NO;
             if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
                 [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateCancel];
             }
@@ -222,34 +200,60 @@
             }
         }
         [self invalidatePressTimer];
+    }else if (gesture.state == UIGestureRecognizerStateCancelled) {
+        [self resetToDefaultState];
     }
+}
+
+- (void)resetToDefaultState {
+    @WeakObj(self)
+    if (_isRunning) {
+        [_shapeLayer removeFromSuperlayer];
+        _shapeLayer.strokeStart = 0;
+        _shapeLayer.strokeEnd = 0;
+    }
+    _isRunning = NO;
+    [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
+        selfWeak.outsideView.transform = CGAffineTransformScale(selfWeak.outsideView.transform, 1.0/selfWeak.outMaxScale, 1.0/selfWeak.outMaxScale);
+        selfWeak.insideView.transform = CGAffineTransformScale(selfWeak.insideView.transform, 1.0/selfWeak.inMinScale, 1.0/selfWeak.inMinScale);
+    }];
+    _pressGesture.enabled = YES;
 }
 
 -(void)invalidatePressTimer{
-    [pressTimer invalidate];
-    pressTimer = nil;
-    pressedTime = 0.0;
+    if (_pressTimer) {
+        [_pressTimer invalidate];
+        _pressTimer = nil;
+    }
+    if (_endTimer) {
+        [_endTimer invalidate];
+        _endTimer = nil;
+    }
+    _pressedTime = 0.0;
 }
 
 -(void)calculatePressedTime{
-    pressedTime += MG_PROGRESS_UPDATE_TIME;
+    _pressedTime += MG_PROGRESS_UPDATE_TIME;
     //Draw progress circel
-    if (pressedTime>MG_BUTTON_ANIMATION) {
-        if (!isRunning) {
-            isRunning = YES;
-//            if ([self.delegate respondsToSelector:@selector(captureControlViewDidStartCapturing)]) {
-//                [self.delegate captureControlViewDidStartCapturing];
-//            }
+    if (_pressedTime>MG_BUTTON_ANIMATION) {
+        if (!_isRunning) {
+            _isRunning = YES;
+            //Notice start capturing
+            if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
+                [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateBegin];
+            }
         }
         [self drawCircleWithAnimation];
     }
-    //停止拍摄
-    if (pressedTime >= MG_MAX_CAPTURE_TIME+MG_BUTTON_ANIMATION) {
-        [self invalidatePressTimer];
-//        if ([self.delegate respondsToSelector:@selector(captureControlViewDidEndCapturing)]) {
-//            [self.delegate captureControlViewDidEndCapturing];
-//        }
+}
+
+- (void)captureShouldEnd {
+    //Notice end capturing
+    if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
+        [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateEnd];
     }
+    _pressGesture.enabled = NO;
+    [self invalidatePressTimer];
 }
 
 - (void)drawCircleWithAnimation{
@@ -259,7 +263,9 @@
 #pragma mark - Oprations
 
 - (void)insideButtonDidClicked:(UIButton*)button {
-    NSLog(@"按钮被点击");
+    if ([self.delegate respondsToSelector:@selector(captureControlViewDidClicked)]) {
+        [self.delegate captureControlViewDidClicked];
+    }
 }
 
 @end

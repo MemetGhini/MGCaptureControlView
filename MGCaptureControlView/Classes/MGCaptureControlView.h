@@ -1,9 +1,9 @@
 //
 //  MGCaptureControlView.h
-//  buttonTest
+//  MGCaptureControlView
 //
-//  Created by Memet on 2018/6/12.
-//  Copyright © 2018 Memet. All rights reserved.
+//  Created by MemetGhini on 2018/6/12.
+//  Copyright © 2018 MemetGhini. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
