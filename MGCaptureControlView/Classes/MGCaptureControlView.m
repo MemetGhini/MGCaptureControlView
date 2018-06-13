@@ -19,13 +19,13 @@
 #define MG_BUTTON_ANIMATION 0.4
 #define MG_MINIMUM_CAPTURE_TIME 0.7
 #define MG_PROGRESS_UPDATE_TIME 0.05
-#define MG_ADD_PER_SECOND MG_PROGRESS_UPDATE_TIME/MG_MAX_CAPTURE_TIME
+#define MG_ADD_PER_UNIT MG_PROGRESS_UPDATE_TIME/MG_MAX_CAPTURE_TIME
 #define WeakObj(o) autoreleasepool{} __weak typeof(o) o##Weak = o;
 
 @interface MGCaptureControlView()
 {
     BOOL _isRunning;
-    CAShapeLayer *_shapeLayer;
+    CAShapeLayer *_progressLayer;
     NSTimer *_pressTimer;
     NSTimer *_endTimer;
     CGFloat _pressedTime;
@@ -91,7 +91,7 @@
 - (void)createUI {
     //outside view
     _outsideView = [[UIView alloc] initWithFrame:self.bounds];
-    _outsideView.layer.cornerRadius = self.bounds.size.width/2.0;
+    _outsideView.layer.cornerRadius = MIN(self.bounds.size.width, self.bounds.size.height)/2.0;
     _outsideView.backgroundColor = _outColor;
     [self addSubview:_outsideView];
     //inside view
@@ -99,7 +99,7 @@
     CGFloat insideHeight = CGRectGetHeight(_outsideView.frame)*_insideOutsideRatio;
     _insideView = [[UIButton alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.frame)-insideWidth)/2.0, (CGRectGetHeight(self.frame)-insideHeight)/2.0, insideWidth, insideHeight)];
     _insideView.backgroundColor = self.inColor;
-    _insideView.layer.cornerRadius = _insideView.frame.size.width/2.0;
+    _insideView.layer.cornerRadius = MIN(_insideView.frame.size.width, _insideView.frame.size.height)/2.0;
     _insideView.layer.borderWidth = _inBorderWidth;
     _insideView.layer.borderColor = _inBorderColor.CGColor;
     [_insideView addTarget:self action:@selector(insideButtonDidClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,21 +114,21 @@
     //Create CAShapeLayer
     CGFloat shapeLayerWidth = CGRectGetWidth(self.frame)*_outMaxScale;
     CGFloat shapeLayerHeight = CGRectGetHeight(self.frame)*_outMaxScale;
-    _shapeLayer = [CAShapeLayer layer];
-    _shapeLayer.frame = CGRectMake(0, 0, shapeLayerWidth, shapeLayerHeight);
-    _shapeLayer.position = _insideView.center;
-    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
-    _shapeLayer.lineCap = kCALineCapRound;
-    _shapeLayer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 0.0, 0.0);
-    _shapeLayer.lineWidth = _progressWidth;
-    _shapeLayer.strokeColor = self.progressColor.CGColor;
-    _shapeLayer.strokeStart = 0;
-    _shapeLayer.strokeEnd = 0;
+    _progressLayer = [CAShapeLayer layer];
+    _progressLayer.frame = CGRectMake(0, 0, shapeLayerWidth, shapeLayerHeight);
+    _progressLayer.position = _insideView.center;
+    _progressLayer.fillColor = [UIColor clearColor].CGColor;
+    _progressLayer.lineCap = kCALineCapRound;
+    _progressLayer.transform = CATransform3DMakeRotation(-M_PI_2, 0.0, 0.0, 0.0);
+    _progressLayer.lineWidth = _progressWidth;
+    _progressLayer.strokeColor = self.progressColor.CGColor;
+    _progressLayer.strokeStart = 0;
+    _progressLayer.strokeEnd = 0;
     //Create BezierPath
-    UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:_shapeLayer.bounds cornerRadius:shapeLayerWidth/2];
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:_progressLayer.bounds cornerRadius:MIN(shapeLayerWidth, shapeLayerHeight)/2];
     circlePath.lineCapStyle = kCGLineCapRound;
     //CAShapeLayer Path
-    _shapeLayer.path = circlePath.CGPath;
+    _progressLayer.path = circlePath.CGPath;
 }
 
 #pragma mark - Setter
@@ -140,27 +140,36 @@
 
 - (void)setProgressColor:(UIColor *)progressColor {
     _progressColor = progressColor;
-    if (_shapeLayer) {
-        _shapeLayer.strokeColor = _progressColor.CGColor;
+    if (_progressLayer) {
+        _progressLayer.strokeColor = _progressColor.CGColor;
     }
 }
 
 - (void)setInBorderWidth:(CGFloat)inBorderWidth {
     _inBorderWidth = inBorderWidth;
-    if (_shapeLayer) {
+    if (_progressLayer) {
         _insideView.layer.borderWidth = _inBorderWidth;
     }
 }
 
 - (void)setInBorderColor:(UIColor *)inBorderColor {
     _inBorderColor = inBorderColor;
-    if (_shapeLayer) {
+    if (_progressLayer) {
         _insideView.layer.borderColor = _inBorderColor.CGColor;
     }
 }
 
 - (void)setOutMaxScale:(CGFloat)outMaxScale {
     _outMaxScale = outMaxScale;
+    CGFloat shapeLayerWidth = CGRectGetWidth(self.frame)*_outMaxScale;
+    CGFloat shapeLayerHeight = CGRectGetHeight(self.frame)*_outMaxScale;
+    _progressLayer.frame = CGRectMake(0, 0, shapeLayerWidth, shapeLayerHeight);
+    _progressLayer.position = _insideView.center;
+    //Create BezierPath
+    UIBezierPath *circlePath = [UIBezierPath bezierPathWithRoundedRect:_progressLayer.bounds cornerRadius:MIN(shapeLayerWidth, shapeLayerHeight)/2];
+    circlePath.lineCapStyle = kCGLineCapRound;
+    //CAShapeLayer Path
+    _progressLayer.path = circlePath.CGPath;
 }
 
 - (void)setInMinScale:(CGFloat)inMinScale {
@@ -169,16 +178,13 @@
 
 - (void)setProgressWidth:(CGFloat )progressWidth {
     _progressWidth = progressWidth;
-    if (_shapeLayer) {
-        _shapeLayer.lineWidth = _progressWidth;
+    if (_progressLayer) {
+        _progressLayer.lineWidth = _progressWidth;
     }
 }
 
 -(void)longPressGestureRecognizer:(UILongPressGestureRecognizer*)gesture{
     @WeakObj(self)
-    if (_shapeLayer) {
-        [self.layer addSublayer:_shapeLayer];
-    }
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
             selfWeak.outsideView.transform = CGAffineTransformScale(selfWeak.outsideView.transform, selfWeak.outMaxScale, selfWeak.outMaxScale);
@@ -201,16 +207,19 @@
         }
         [self invalidatePressTimer];
     }else if (gesture.state == UIGestureRecognizerStateCancelled) {
-        [self resetToDefaultState];
+        //In order to avoid the animation is not finished
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self resetToDefaultState];
+        });
     }
 }
 
 - (void)resetToDefaultState {
     @WeakObj(self)
     if (_isRunning) {
-        [_shapeLayer removeFromSuperlayer];
-        _shapeLayer.strokeStart = 0;
-        _shapeLayer.strokeEnd = 0;
+        [_progressLayer removeFromSuperlayer];
+        _progressLayer.strokeStart = 0;
+        _progressLayer.strokeEnd = 0;
     }
     _isRunning = NO;
     [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
@@ -238,6 +247,10 @@
     if (_pressedTime>MG_BUTTON_ANIMATION) {
         if (!_isRunning) {
             _isRunning = YES;
+            //Add shapeLayer
+            if (_progressLayer) {
+                [self.layer addSublayer:_progressLayer];
+            }
             //Notice start capturing
             if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
                 [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateBegin];
@@ -257,7 +270,7 @@
 }
 
 - (void)drawCircleWithAnimation{
-    _shapeLayer.strokeEnd += MG_ADD_PER_SECOND;
+    _progressLayer.strokeEnd += MG_ADD_PER_UNIT;
 }
 
 #pragma mark - Oprations
