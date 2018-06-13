@@ -7,9 +7,13 @@
 //
 
 #import "MGViewController.h"
-#import <MGCaptureControlView/MGCaptureControlView.h>
+#import "MGCaptureDemoViewController.h"
 
-@interface MGViewController ()<MGCaptureControlViewDelegate>
+@interface MGViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSArray *_dataArray;
+}
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -17,24 +21,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//Demo
-    MGCaptureControlView *captureControlView = [[MGCaptureControlView alloc] initWithFrame:CGRectMake(100, 400, 80, 80)];
-    captureControlView.delegate = self;
-    [self.view addSubview:captureControlView];
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    self.tableView.tableFooterView = [UIView new];
+    //data
+    _dataArray = @[@"Wechat",@"QQ",@"Custom"];
 }
 
-- (void)captureControlViewStateDidChangeTo:(MGCaptureState)state {
-    if (state == MGCaptureStateBegin) {
-        NSLog(@"Capturing started.");
-    } else if (state == MGCaptureStateCancel) {
-        NSLog(@"Capturing canceled.");
-    }else if (state == MGCaptureStateEnd) {
-        NSLog(@"Capturing ended.");
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _dataArray.count;
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ID"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ID"];
     }
+    cell.textLabel.text = _dataArray[indexPath.row];
+    return cell;
 }
 
-- (void)captureControlViewDidClicked {
-    NSLog(@"Capture button did clicked.");
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 55;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //Demo
+    MGCaptureDemoViewController *demoVC = [[MGCaptureDemoViewController alloc] initWith:_dataArray[indexPath.row]];
+    [self presentViewController:demoVC animated:YES completion:^{
+        
+    }];
 }
 
 @end

@@ -42,11 +42,11 @@
     self = [self initWithFrame:frame];
     if (self) {
         if (inOutRatio>1) {
-            _insideOutsideRatio = 1.0;
+            self.insideOutsideRatio = 1.0;
         } else if (inOutRatio<0) {
-            _insideOutsideRatio = 0.0;
+            self.insideOutsideRatio = 0.0;
         } else {
-            _insideOutsideRatio = inOutRatio;
+            self.insideOutsideRatio = inOutRatio;
         }
     }
     return self;
@@ -137,6 +137,14 @@
 
 #pragma mark - Setter
 
+- (void)setInsideOutsideRatio:(CGFloat)insideOutsideRatio {
+    _insideOutsideRatio = insideOutsideRatio;
+    CGFloat insideWidth = CGRectGetWidth(_outsideView.frame)*_insideOutsideRatio;
+    CGFloat insideHeight = CGRectGetHeight(_outsideView.frame)*_insideOutsideRatio;
+    _insideView.frame = CGRectMake((CGRectGetWidth(self.frame)-insideWidth)/2.0, (CGRectGetHeight(self.frame)-insideHeight)/2.0, insideWidth, insideHeight);
+    _insideView.layer.cornerRadius = MIN(_insideView.frame.size.width, _insideView.frame.size.height)/2.0;
+}
+
 - (void)setOutColor:(UIColor *)outColor {
     _outColor = outColor;
     self.outsideView.backgroundColor = _outColor;
@@ -194,7 +202,7 @@
 - (void)setProgressWidth:(CGFloat )progressWidth {
     _progressWidth = progressWidth;
     if (_progressLayer) {
-        _progressLayer.lineWidth = _progressWidth;
+        _progressLayer.lineWidth = _progressWidth*_outMaxScale;
     }
 }
 
