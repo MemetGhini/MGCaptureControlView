@@ -4,7 +4,9 @@
 [![Version](https://img.shields.io/cocoapods/v/MGCaptureControlView.svg?style=flat)](https://cocoapods.org/pods/MGCaptureControlView)
 [![License](https://img.shields.io/cocoapods/l/MGCaptureControlView.svg?style=flat)](https://cocoapods.org/pods/MGCaptureControlView)
 [![Platform](https://img.shields.io/cocoapods/p/MGCaptureControlView.svg?style=flat)](https://cocoapods.org/pods/MGCaptureControlView)
-
+<p align="left" >
+<img src="Images/demo_one.gif" title="demo" float=left>
+</p>
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
