@@ -26,7 +26,9 @@ pod 'MGCaptureControlView'
 
 ## Author
 
-memetghini@qq.com, memetghini@qq.com
+Name: MemetGhini
+
+E-Mail: memetghini@qq.com
 
 ## License
 
