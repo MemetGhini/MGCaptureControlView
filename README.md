@@ -5,9 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/MGCaptureControlView.svg?style=flat)](https://cocoapods.org/pods/MGCaptureControlView)
 [![Platform](https://img.shields.io/cocoapods/p/MGCaptureControlView.svg?style=flat)](https://cocoapods.org/pods/MGCaptureControlView)
 <p align="left" >
-  <img src="Images/demo_two.gif" title="demo" float=left width="375" height="667">
-  <img src="Images/demo_one.png" title="demo" float=left width="375" height="667">
-  <img src="Images/demo_three.png" title="demo" float=left width="375" height="667">
+  <img src="Images/demo_two.gif" title="demo" float=left width="250" height="444">
+  <img src="Images/demo_one.png" title="demo" float=left width="250" height="444">
+  <img src="Images/demo_three.png" title="demo" float=left width="250" height="444">
 </p>
 ## Example
 
