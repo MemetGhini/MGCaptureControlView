@@ -33,12 +33,18 @@ typedef enum : NSUInteger {
  Mainly used to feedback changes in recording status.
  Currently Support Start, Cancel, End statuses.
  */
-- (void)captureControlViewStateDidChangeTo:(MGCaptureState)state;
+- (void)mg_captureControlViewStateDidChangeTo:(MGCaptureState)state;
 
 /**
  Mainly used to feedback capture button click.
  */
-- (void)captureControlViewDidClicked;
+- (void)mg_captureControlViewDidClicked;
+
+/**
+ Mainly used to feedback user touch on capture view.
+ NOTE: this method will be called every time user touch the view by pressing.
+ */
+- (void)mg_captureControlViewDidTouched;
 @end
 
 IB_DESIGNABLE
@@ -72,6 +78,10 @@ IB_DESIGNABLE
  Progress circle position.
  */
 @property (nonatomic, assign) MGProgressPosition progressPosition;
+/**
+ Minimum capture time for video record, if user if recorded time is less then valid capture time capturation will be cancled.
+ */
+@property (nonatomic, assign) IBInspectable CGFloat validCaptureTime;
 
 @property (nonatomic,weak) id<MGCaptureControlViewDelegate> delegate;
 

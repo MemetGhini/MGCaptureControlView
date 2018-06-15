@@ -92,6 +92,7 @@
         captureControlView.inBorderWidth = 0.0;
         captureControlView.progressPosition = MGProgressPositionIn;
     }
+    captureControlView.validCaptureTime = 1.0;
     captureControlView.delegate = self;
     [self.view addSubview:captureControlView];
     //status
@@ -110,7 +111,7 @@
 
 #pragma mark - MGCaptureControlViewDelegate
 
-- (void)captureControlViewStateDidChangeTo:(MGCaptureState)state {
+- (void)mg_captureControlViewStateDidChangeTo:(MGCaptureState)state {
     __weak typeof(self)weakSelf = self;
     if (state == MGCaptureStateBegin) {
         _statusLabel.text = @"Capturing started.";
@@ -125,15 +126,18 @@
             weakSelf.statusLabel.text = @"";
         });
     }
-    
 }
 
-- (void)captureControlViewDidClicked {
+- (void)mg_captureControlViewDidClicked {
     __weak typeof(self)weakSelf = self;
     _statusLabel.text = @"Capture button did clicked.";
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         weakSelf.statusLabel.text = @"";
     });
+}
+
+- (void)mg_captureControlViewDidTouched {
+    NSLog(@"User did touch capture view");
 }
 
 @end

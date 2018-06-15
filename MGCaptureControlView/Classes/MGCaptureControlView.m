@@ -88,6 +88,7 @@
     self.outMaxScale = MG_OUTSIDE_VIEW_MAX_SCALE;
     self.inMinScale = MG_INSIDE_VIEW_MIN_SCALE;
     self.progressWidth = MG_PROGRESS_WIDTH;
+    self.validCaptureTime = MG_MINIMUM_CAPTURE_TIME;
 }
 
 - (void)createUI {
@@ -231,6 +232,9 @@
 -(void)longPressGestureRecognizer:(UILongPressGestureRecognizer*)gesture{
     @WeakObj(self)
     if (gesture.state == UIGestureRecognizerStateBegan) {
+        if ([self.delegate respondsToSelector:@selector(mg_captureControlViewDidTouched)]) {
+            [self.delegate mg_captureControlViewDidTouched];
+        }
         [UIView animateWithDuration:MG_BUTTON_ANIMATION animations:^{
             selfWeak.outsideView.transform = CGAffineTransformScale(selfWeak.outsideView.transform, selfWeak.outMaxScale, selfWeak.outMaxScale);
             selfWeak.insideView.transform = CGAffineTransformScale(selfWeak.insideView.transform, selfWeak.inMinScale, selfWeak.inMinScale);
@@ -240,14 +244,14 @@
     }else if (gesture.state == UIGestureRecognizerStateEnded){
         [self resetToDefaultState];
         //If it is too short, click Cancel
-        if (_pressedTime<=MG_BUTTON_ANIMATION+MG_MINIMUM_CAPTURE_TIME) {
+        if (_pressedTime<=MG_BUTTON_ANIMATION+_validCaptureTime) {
             _isRunning = NO;
-            if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
-                [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateCancel];
+            if ([self.delegate respondsToSelector:@selector(mg_captureControlViewStateDidChangeTo:)]) {
+                [self.delegate mg_captureControlViewStateDidChangeTo:MGCaptureStateCancel];
             }
         }else{
-            if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
-                [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateEnd];
+            if ([self.delegate respondsToSelector:@selector(mg_captureControlViewStateDidChangeTo:)]) {
+                [self.delegate mg_captureControlViewStateDidChangeTo:MGCaptureStateEnd];
             }
         }
         [self invalidatePressTimer];
@@ -297,8 +301,8 @@
                 [self.layer addSublayer:_progressLayer];
             }
             //Notice start capturing
-            if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
-                [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateBegin];
+            if ([self.delegate respondsToSelector:@selector(mg_captureControlViewStateDidChangeTo:)]) {
+                [self.delegate mg_captureControlViewStateDidChangeTo:MGCaptureStateBegin];
             }
         }
         [self drawCircleWithAnimation];
@@ -307,8 +311,8 @@
 
 - (void)captureShouldEnd {
     //Notice end capturing
-    if ([self.delegate respondsToSelector:@selector(captureControlViewStateDidChangeTo:)]) {
-        [self.delegate captureControlViewStateDidChangeTo:MGCaptureStateEnd];
+    if ([self.delegate respondsToSelector:@selector(mg_captureControlViewStateDidChangeTo:)]) {
+        [self.delegate mg_captureControlViewStateDidChangeTo:MGCaptureStateEnd];
     }
     _pressGesture.enabled = NO;
     [self invalidatePressTimer];
@@ -321,8 +325,8 @@
 #pragma mark - Oprations
 
 - (void)insideButtonDidClicked:(UIButton*)button {
-    if ([self.delegate respondsToSelector:@selector(captureControlViewDidClicked)]) {
-        [self.delegate captureControlViewDidClicked];
+    if ([self.delegate respondsToSelector:@selector(mg_captureControlViewDidClicked)]) {
+        [self.delegate mg_captureControlViewDidClicked];
     }
 }
 
