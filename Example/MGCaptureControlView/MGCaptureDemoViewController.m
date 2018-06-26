@@ -114,13 +114,16 @@
 - (void)mg_captureControlViewStateDidChangeTo:(MGCaptureState)state {
     __weak typeof(self)weakSelf = self;
     if (state == MGCaptureStateBegin) {
+        NSLog(@"Capturing started.");
         _statusLabel.text = @"Capturing started.";
     } else if (state == MGCaptureStateCancel) {
+        NSLog(@"Capturing canceled.");
         _statusLabel.text = @"Capturing canceled.";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            weakSelf.statusLabel.text = @"9";
+            weakSelf.statusLabel.text = @"";
         });
     }else if (state == MGCaptureStateEnd) {
+        NSLog(@"Capturing ended.");
         _statusLabel.text = @"Capturing ended.";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             weakSelf.statusLabel.text = @"";

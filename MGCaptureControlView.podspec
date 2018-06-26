@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MGCaptureControlView'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'A camera capture control button with supporting clicking, long press, cancelation like WeChat , QQ.'
 
 # This description is used to generate tags and improve search results.

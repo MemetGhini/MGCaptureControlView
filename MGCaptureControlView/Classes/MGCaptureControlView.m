@@ -10,7 +10,7 @@
 
 #define MG_IN_OUT_RATIO 3.0/4.0
 #define MG_IN_BORDER_WIDTH 2.0
-#define MG_MAX_CAPTURE_TIME 6.0
+#define MG_MAX_CAPTURE_TIME 10.0
 #define MG_MINIMUM_PRESS_DURATION 0.15
 #define MG_OUTSIDE_VIEW_MAX_SCALE 3.0/2.0
 #define MG_INSIDE_VIEW_MIN_SCALE 3.0/4.0
@@ -19,7 +19,6 @@
 #define MG_BUTTON_ANIMATION 0.4
 #define MG_MINIMUM_CAPTURE_TIME 0.7
 #define MG_PROGRESS_UPDATE_TIME 0.05
-#define MG_ADD_PER_UNIT MG_PROGRESS_UPDATE_TIME/MG_MAX_CAPTURE_TIME
 #define WeakObj(o) autoreleasepool{} __weak typeof(o) o##Weak = o;
 
 @interface MGCaptureControlView()
@@ -27,9 +26,9 @@
     BOOL _isRunning;
     CAShapeLayer *_progressLayer;
     NSTimer *_pressTimer;
-    NSTimer *_endTimer;
     CGFloat _pressedTime;
     UILongPressGestureRecognizer *_pressGesture;
+    CGFloat _addPerUnit;
 }
 @property (nonatomic,strong) UIView *outsideView;
 @property (nonatomic,strong) UIButton *insideView;
@@ -89,6 +88,8 @@
     self.inMinScale = MG_INSIDE_VIEW_MIN_SCALE;
     self.progressWidth = MG_PROGRESS_WIDTH;
     self.validCaptureTime = MG_MINIMUM_CAPTURE_TIME;
+    self.videoLength = MG_MAX_CAPTURE_TIME;
+    _addPerUnit = MG_PROGRESS_UPDATE_TIME/self.videoLength;
 }
 
 - (void)createUI {
@@ -240,8 +241,11 @@
             selfWeak.insideView.transform = CGAffineTransformScale(selfWeak.insideView.transform, selfWeak.inMinScale, selfWeak.inMinScale);
         }];
         _pressTimer = [NSTimer scheduledTimerWithTimeInterval:MG_PROGRESS_UPDATE_TIME target:self selector:@selector(calculatePressedTime) userInfo:nil repeats:YES];
-        _endTimer = [NSTimer scheduledTimerWithTimeInterval:MG_BUTTON_ANIMATION+MG_MAX_CAPTURE_TIME target:self selector:@selector(captureShouldEnd) userInfo:nil repeats:YES];
+        [self performSelector:@selector(captureShouldEnd) withObject:nil afterDelay:MG_BUTTON_ANIMATION+self.videoLength];
     }else if (gesture.state == UIGestureRecognizerStateEnded){
+        //Cancel captureShouldEnd task
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(captureShouldEnd) object:nil];
+        //Reset progress
         [self resetToDefaultState];
         //If it is too short, click Cancel
         if (_pressedTime<=MG_BUTTON_ANIMATION+_validCaptureTime) {
@@ -256,8 +260,10 @@
         }
         [self invalidatePressTimer];
     }else if (gesture.state == UIGestureRecognizerStateCancelled) {
+        //NOTE: Status change to UIGestureRecognizerStateCancelled after calling @selector(captureShouldEnd).
         //In order to avoid the animation is not finished
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //Reset progress
             [self resetToDefaultState];
         });
     }
@@ -282,10 +288,6 @@
     if (_pressTimer) {
         [_pressTimer invalidate];
         _pressTimer = nil;
-    }
-    if (_endTimer) {
-        [_endTimer invalidate];
-        _endTimer = nil;
     }
     _pressedTime = 0.0;
 }
@@ -319,7 +321,7 @@
 }
 
 - (void)drawCircleWithAnimation{
-    _progressLayer.strokeEnd += MG_ADD_PER_UNIT;
+    _progressLayer.strokeEnd += _addPerUnit;
 }
 
 #pragma mark - Oprations

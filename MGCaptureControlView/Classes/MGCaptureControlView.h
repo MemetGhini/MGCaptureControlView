@@ -79,9 +79,13 @@ IB_DESIGNABLE
  */
 @property (nonatomic, assign) MGProgressPosition progressPosition;
 /**
- Minimum capture time for video record, if user if recorded time is less then valid capture time capturation will be cancled.
+ Minimum capture time for video record, if recorded time is less then valid capture time capturation will be cancled.
  */
 @property (nonatomic, assign) IBInspectable CGFloat validCaptureTime;
+/**
+ Maximum capture time for video record, if recorded time is more then VideoLength capturation will be ended. Default value is 10 second.
+ */
+@property (nonatomic, assign) IBInspectable CGFloat videoLength;
 
 @property (nonatomic,weak) id<MGCaptureControlViewDelegate> delegate;
 
