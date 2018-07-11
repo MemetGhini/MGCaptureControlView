@@ -14,6 +14,11 @@
 #define COLOR(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 @interface MGCaptureDemoViewController ()<MGCaptureControlViewDelegate>
+{
+    MGCaptureControlView *_captureControlView;
+    UIButton *_photoEnabledBtn;
+    UIButton *_videoEnabledBtn;
+}
 @property (nonatomic,strong) NSString *titleString;
 @property (nonatomic,strong) UILabel *statusLabel;
 @end
@@ -95,6 +100,7 @@
     captureControlView.validCaptureTime = 1.0;
     captureControlView.delegate = self;
     [self.view addSubview:captureControlView];
+    _captureControlView = captureControlView;
     //status
     _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, DEVICE_WIDTH, 44)];
     _statusLabel.backgroundColor = COLOR(0, 0, 0, 0.3);
@@ -103,6 +109,56 @@
     _statusLabel.font = [UIFont systemFontOfSize:20 weight:UIFontWeightHeavy];
     _statusLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:_statusLabel];
+    //Enabled Type Buttons
+    _photoEnabledBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _photoEnabledBtn.frame = CGRectMake(DEVICE_WIDTH-20-30, 50, 21, 17.5);
+    [_photoEnabledBtn setImage:[UIImage imageNamed:@"photo_enabled"] forState:UIControlStateNormal];
+    [_photoEnabledBtn setImage:[UIImage imageNamed:@"photo_disabled"] forState:UIControlStateSelected];
+    [_photoEnabledBtn addTarget:self action:@selector(photoModeEnabledDidClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_photoEnabledBtn];
+    
+    _videoEnabledBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _videoEnabledBtn.frame = CGRectMake(DEVICE_WIDTH-20-30-20-30, 45, 28, 28);
+    [_videoEnabledBtn setImage:[UIImage imageNamed:@"video_enabled"] forState:UIControlStateNormal];
+    [_videoEnabledBtn setImage:[UIImage imageNamed:@"video_disabled"] forState:UIControlStateSelected];
+    [_videoEnabledBtn addTarget:self action:@selector(videoModeEnabledDidClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_videoEnabledBtn];
+}
+
+- (void)photoModeEnabledDidClicked:(UIButton*)button {
+    button.selected = !button.selected;
+    [self updateEnabledStatus];
+    _statusLabel.text = [NSString stringWithFormat:@"Photo %@",button.selected?@"disabled":@"enabled"];
+    __weak typeof(self)weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        weakSelf.statusLabel.text = @"";
+    });
+}
+
+- (void)videoModeEnabledDidClicked:(UIButton*)button {
+    button.selected = !button.selected;
+    [self updateEnabledStatus];
+    _statusLabel.text = [NSString stringWithFormat:@"Video %@",button.selected?@"disabled":@"enabled"];
+    __weak typeof(self)weakSelf = self;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        weakSelf.statusLabel.text = @"";
+    });
+}
+
+- (void)updateEnabledStatus {
+    if (!_photoEnabledBtn.selected) {
+        if (!_videoEnabledBtn.selected) {
+            _captureControlView.enabledCaptureType = MGEnabledCaptureTypeVideo|MGEnabledCaptureTypePhoto;
+        }else{
+            _captureControlView.enabledCaptureType =  MGEnabledCaptureTypePhoto;
+        }
+    }else{
+        if (!_videoEnabledBtn.selected) {
+            _captureControlView.enabledCaptureType = MGEnabledCaptureTypeVideo;
+        }else{
+            _captureControlView.enabledCaptureType =  MGEnabledCaptureTypeNone;
+        }
+    }
 }
 
 - (void)closeDidClicked:(UIButton*)button {

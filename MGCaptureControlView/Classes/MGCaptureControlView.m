@@ -90,6 +90,7 @@
     self.validCaptureTime = MG_MINIMUM_CAPTURE_TIME;
     self.videoLength = MG_MAX_CAPTURE_TIME;
     _addPerUnit = MG_PROGRESS_UPDATE_TIME/self.videoLength;
+    self.enabledCaptureType = MGEnabledCaptureTypePhoto | MGEnabledCaptureTypeVideo;
 }
 
 - (void)createUI {
@@ -138,6 +139,11 @@
 }
 
 #pragma mark - Setter
+
+- (void)setEnabledCaptureType:(MGEnabledCaptureType)enabledCaptureType {
+    _enabledCaptureType = enabledCaptureType;
+    _pressGesture.enabled = (_enabledCaptureType & MGEnabledCaptureTypeVideo);
+}
 
 - (void)setInsideOutsideRatio:(CGFloat)insideOutsideRatio {
     _insideOutsideRatio = insideOutsideRatio;
@@ -327,7 +333,7 @@
 #pragma mark - Oprations
 
 - (void)insideButtonDidClicked:(UIButton*)button {
-    if ([self.delegate respondsToSelector:@selector(mg_captureControlViewDidClicked)]) {
+    if ([self.delegate respondsToSelector:@selector(mg_captureControlViewDidClicked)] && (_enabledCaptureType & MGEnabledCaptureTypePhoto)) {
         [self.delegate mg_captureControlViewDidClicked];
     }
 }

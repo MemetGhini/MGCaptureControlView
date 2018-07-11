@@ -26,6 +26,11 @@ typedef enum : NSUInteger {
     MGProgressPositionIn,
 } MGProgressPosition;
 
+typedef enum : NSUInteger {
+    MGEnabledCaptureTypeNone            = 1,
+    MGEnabledCaptureTypePhoto           = 1 << 1,
+    MGEnabledCaptureTypeVideo           = 1 << 2,
+} MGEnabledCaptureType;
 
 @protocol MGCaptureControlViewDelegate<NSObject>
 @optional
@@ -86,6 +91,10 @@ IB_DESIGNABLE
  Maximum capture time for video record, if recorded time is more then VideoLength capturation will be ended. Default value is 10 second.
  */
 @property (nonatomic, assign) IBInspectable CGFloat videoLength;
+/**
+ Enabled capture type of capture control view, Taking Photo and Recording Video is enabled by default.
+ */
+@property (nonatomic, assign) MGEnabledCaptureType enabledCaptureType;
 
 @property (nonatomic,weak) id<MGCaptureControlViewDelegate> delegate;
 
